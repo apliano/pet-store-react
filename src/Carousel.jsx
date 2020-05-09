@@ -9,8 +9,6 @@ class Carousel extends React.Component {
       photos: [],
       active: 0,
     };
-
-    this.handleClickIndex = this.handleClickIndex.bind(this);
   }
 
   static getDerivedStateFromProps({ media }) {
@@ -26,11 +24,11 @@ class Carousel extends React.Component {
   }
 
   // We need to lexical bind the this (The nice way is to use here a arrow function)
-  handleClickIndex(event) {
+  handleClickIndex = (event) => {
     this.setState({
       active: +event.target.dataset.index,
     });
-  }
+  };
 
   render() {
     const { photos, active } = this.state;

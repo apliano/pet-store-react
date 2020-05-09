@@ -14,9 +14,6 @@ class Details extends React.Component {
       loading: true,
       showModal: false,
     };
-
-    this.toggleModal = this.toggleModal.bind(this);
-    this.adopt = this.adopt.bind(this);
   }
 
   componentDidMount() {
@@ -49,13 +46,13 @@ class Details extends React.Component {
       );
   }
 
-  toggleModal() {
+  toggleModal = () => {
     this.setState({ showModal: !this.state.showModal });
-  }
+  };
 
-  adopt() {
+  adopt = () => {
     navigate(this.state.url);
-  }
+  };
 
   handleClick() {}
 
