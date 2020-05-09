@@ -1,17 +1,23 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import { Photo } from '@frontendmasters/pet';
 
-class Carousel extends React.Component {
-  constructor(props) {
-    super(props);
+interface IProps {
+  media: Photo[];
+}
 
-    this.state = {
-      photos: [],
-      active: 0,
-    };
-  }
+interface IState {
+  active: number;
+  photos: string[];
+}
 
-  static getDerivedStateFromProps({ media }) {
+class Carousel extends React.Component<IProps, IState> {
+  public state = {
+    photos: [],
+    active: 0,
+  };
+
+  public static getDerivedStateFromProp({ media }: IProps) {
     let photos = ['http://placecorgi.com/600/600'];
 
     if (media.length) {
@@ -24,13 +30,18 @@ class Carousel extends React.Component {
   }
 
   // We need to lexical bind the this (The nice way is to use here a arrow function)
-  handleClickIndex = (event) => {
-    this.setState({
-      active: +event.target.dataset.index,
-    });
+  public handleClickIndex = (event: React.MouseEvent<HTMLElement>) => {
+    if (!(event.target instanceof HTMLElement)) {
+      return;
+    }
+    if (event.target.dataset.index) {
+      this.setState({
+        active: +event.target.dataset.index,
+      });
+    }
   };
 
-  render() {
+  public render() {
     const { photos, active } = this.state;
 
     return (

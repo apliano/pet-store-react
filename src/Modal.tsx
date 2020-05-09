@@ -1,15 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, FunctionComponent } from 'react';
 import { createPortal } from 'react-dom';
 
-const Modal = function ({ children }) {
-  const elRef = useRef(null);
-  if (!elRef.current) {
-    const div = document.createElement('div');
-    elRef.current = div;
-  }
+const modalRoot = document.getElementById('modal');
+const Modal: FunctionComponent = function ({ children }) {
+  const elRef = useRef(document.createElement('div'));
 
   useEffect(() => {
-    const modalRoot = document.getElementById('modal');
+    if (!modalRoot) {
+      return;
+    }
     modalRoot.appendChild(elRef.current);
 
     // The returned function is the cleanup function
