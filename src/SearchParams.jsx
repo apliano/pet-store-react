@@ -14,8 +14,9 @@ export default function SearchParams() {
   const [breed, BreedDropdown, setBreed] = useDropdown('Breed', '', breeds);
 
   async function requestPets() {
-    const { animals } = await pet.animals({ location, breed, type: animal });
-    setPets(animals || []);
+    pet.animals({ location, breed, type: animal }).then(({ animals }) => {
+      setPets(animals || []);
+    });
   }
 
   useEffect(

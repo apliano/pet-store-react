@@ -7,6 +7,7 @@ const useDropDown = (label, defaultState, options) => {
     <label htmlFor={id}>
       {label}
       <select
+        data-testid={id}
         id={id}
         value={state}
         disabled={options.length === 0}
